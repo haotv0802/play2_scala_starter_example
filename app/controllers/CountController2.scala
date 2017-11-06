@@ -5,6 +5,8 @@ import javax.inject._
 import play.api.libs.json._
 import play.api.mvc._
 import services.Counter
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 /**
  * This controller demonstrates how to use dependency injection to
@@ -16,6 +18,9 @@ import services.Counter
 class CountController2 @Inject() (cc: ControllerComponents,
                                  counter: Counter) extends AbstractController(cc) {
 
+  val logger = LoggerFactory.getLogger(classOf[CountController2])
+
+
   /**
    * Create an action that responds with the [[Counter]]'s current
    * count. The result is plain text. This `Action` is mapped to
@@ -25,6 +30,7 @@ class CountController2 @Inject() (cc: ControllerComponents,
     var email = new EmailAccount()
     email.username = "Hellllll"
 
+    logger.info("Hello from the Pizza class")
     Ok("Hao Ho")
   }
 
