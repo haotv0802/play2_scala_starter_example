@@ -7,6 +7,7 @@ import play.api.mvc._
 import services.Counter
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import com.google.gson._
 
 /**
  * This controller demonstrates how to use dependency injection to
@@ -30,7 +31,10 @@ class TestController @Inject()(cc: ControllerComponents,
     var email = new EmailAccount()
     email.username = "Hellllll"
 
-    logger.info("Hello from the Pizza class")
+    val gson = new Gson
+    val jsonString = gson.toJson(email)
+
+    logger.info(jsonString)
     Ok("Hao Ho")
   }
 
