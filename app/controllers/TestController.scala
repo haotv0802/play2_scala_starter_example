@@ -15,10 +15,10 @@ import org.slf4j.LoggerFactory
  * object is injected by the Guice dependency injection system.
  */
 @Singleton
-class CountController2 @Inject() (cc: ControllerComponents,
-                                 counter: Counter) extends AbstractController(cc) {
+class TestController @Inject()(cc: ControllerComponents,
+                               counter: Counter) extends AbstractController(cc) {
 
-  val logger = LoggerFactory.getLogger(classOf[CountController2])
+  val logger = LoggerFactory.getLogger(classOf[TestController])
 
 
   /**
