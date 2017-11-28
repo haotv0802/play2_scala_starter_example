@@ -7,6 +7,8 @@
 GET     /                           controllers.HomeController.index
 # An example controller showing how to use dependency injection
 GET     /count                      controllers.CountController.count
+GET     /crwlr_be/svc/crawler/vendors                      controllers.TestController.vendors
+GET     /crwlr_be/svc/crawler/crawledData                  controllers.TestController.crawledData
 # An example controller showing how to write asynchronous code
 GET     /message                    controllers.AsyncController.message
 
