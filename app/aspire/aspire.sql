@@ -14,13 +14,16 @@ CREATE TABLE `aspire_users` (
   `referred_by`   VARCHAR(30) NULL,
   `credit_score`  TINYINT     NULL,
   `created_on`    DATETIME DEFAULT NOW(),
-  `updated_on`    DATETIME,
+  `updated_on`    DATETIME    NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `aspire_users_id` (`id`)
   #   CONSTRAINT `aspire_user_referred_by` FOREIGN KEY (`referred_by`) REFERENCES `aspire_users` (`referral_code`)
 )
   ENGINE = INNODB
   DEFAULT CHARSET = UTF8;
+
+INSERT INTO aspire_users (`email`, `password`, `referral_code`, `referred_by`, `credit_score`)
+    VALUE ('hao.ho@wearefram.com', 'pass', '123', '123456', 29);
 
 --
 -- Table structure for table `aspire_business_info`
