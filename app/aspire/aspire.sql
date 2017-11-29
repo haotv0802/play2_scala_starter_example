@@ -98,3 +98,19 @@ CREATE TABLE `aspire_payments` (
 )
   ENGINE = INNODB
   DEFAULT CHARSET = UTF8;
+
+DROP TABLE IF EXISTS `aspire_credit_scores`;
+CREATE TABLE `aspire_credit_scores` (
+  `id`          BIGINT  AUTO_INCREMENT,
+  `name`        DECIMAL(9, 2) NULL,
+  `description` VARCHAR(30)   NULL,
+  `score`       TINYINT DEFAULT 1,
+  `created_on`  DATE          NULL,
+  `updated_on`  DATE          NULL,
+  `user_id`     BIGINT        NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `aspire_credit_scores` (`id`),
+  CONSTRAINT `aspire_credit_scores_user_id` FOREIGN KEY (`user_id`) REFERENCES `aspire_users` (`id`)
+)
+  ENGINE = INNODB
+  DEFAULT CHARSET = UTF8;
