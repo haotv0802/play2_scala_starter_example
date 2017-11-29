@@ -11,6 +11,7 @@ resolvers += "Akka Snapshot Repository" at "http://repo.akka.io/snapshots/"
 scalaVersion := "2.12.2"
 
 libraryDependencies ++= Seq( jdbc , ehcache , ws , specs2 % Test , guice , "com.google.code.gson" % "gson" % "2.2.4",
-  "mysql" % "mysql-connector-java" % "5.1.41")
+  "org.mockito" % "mockito-core" % "2.10.0" % "test")
+libraryDependencies += "mysql" % "mysql-connector-java" % "5.1.18"
 
 unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/test" )

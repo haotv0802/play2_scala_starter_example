@@ -5,6 +5,7 @@ import javax.inject._
 import org.slf4j.LoggerFactory
 import play.api.mvc._
 import com.google.gson._
+import play.api.db.Database
 import services.Counter
 
 /**
@@ -15,7 +16,25 @@ import services.Counter
  */
 @Singleton
 class TestController @Inject()(cc: ControllerComponents,
+                               db: Database,
                                counter: Counter) extends AbstractController(cc) {
+
+  def username = Action {
+    var outString = "Number is "
+    val conn = db.getConnection()
+
+    try {
+      val stmt = conn.createStatement
+      val rs = stmt.executeQuery("SELECT email FROM aspire_users WHERE password = 'pass' ")
+
+      while (rs.next()) {
+        outString += rs.getString("email")
+      }
+    } finally {
+      conn.close()
+    }
+    Ok(outString)
+  }
 
   val logger = LoggerFactory.getLogger(classOf[TestController])
 
