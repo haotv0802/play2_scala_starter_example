@@ -12,7 +12,9 @@ CREATE TABLE `aspire_users` (
   `password`      VARCHAR(30) NULL,
   `referral_code` VARCHAR(30) NULL,
   `referred_by`   VARCHAR(30) NULL,
+  `credit_score`  TINYINT     NULL,
   `created_on`    DATETIME DEFAULT NOW(),
+  `updated_on`    DATETIME,
   PRIMARY KEY (`id`),
   UNIQUE KEY `aspire_users_id` (`id`)
   #   CONSTRAINT `aspire_user_referred_by` FOREIGN KEY (`referred_by`) REFERENCES `aspire_users` (`referral_code`)
@@ -99,18 +101,19 @@ CREATE TABLE `aspire_payments` (
   ENGINE = INNODB
   DEFAULT CHARSET = UTF8;
 
-DROP TABLE IF EXISTS `aspire_credit_scores`;
-CREATE TABLE `aspire_credit_scores` (
+DROP TABLE IF EXISTS `aspire_credit_scores_history`;
+CREATE TABLE `aspire_credit_scores_history` (
   `id`          BIGINT  AUTO_INCREMENT,
   `name`        DECIMAL(9, 2) NULL,
+  `source`      VARCHAR(30)   NULL,
   `description` VARCHAR(30)   NULL,
   `score`       TINYINT DEFAULT 1,
   `created_on`  DATE          NULL,
   `updated_on`  DATE          NULL,
   `user_id`     BIGINT        NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `aspire_credit_scores` (`id`),
-  CONSTRAINT `aspire_credit_scores_user_id` FOREIGN KEY (`user_id`) REFERENCES `aspire_users` (`id`)
+  UNIQUE KEY `aspire_credit_scores_history` (`id`),
+  CONSTRAINT `aspire_credit_scores_history_user_id` FOREIGN KEY (`user_id`) REFERENCES `aspire_users` (`id`)
 )
   ENGINE = INNODB
   DEFAULT CHARSET = UTF8;
